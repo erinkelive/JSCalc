@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Cálculos - Plus</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Relatório de Cálculos - Plus</h1>
+  <!-- Botão para mostrar/ocultar menu de colunas -->
+  <button id="toggleButton" class="no-print">Colunas</button>
+  <div id="toggleMenu" class="no-print"></div>
+
+  <div class="controls no-print">
+    <!-- Seção de datas -->
+    <div class="section">
+      <label>Data Inicial:
+        <input type="date" id="startDate" value="2013-03-01">
+      </label>
+      <label>Data Final:
+        <input type="date" id="endDate" value="2013-12-01">
+      </label>
+      <label>Data limite TJSP:
+        <input type="date" id="limitTJSP" value="2025-10-01">
+      </label>
+      <label>Data limite Poupança:
+        <input type="date" id="limitPoup" value="2021-11-30">
+      </label>
+      <label>Data limite SELIC:
+        <input type="date" id="limitSelic" value="2021-12-01">
+      </label>
+    </div>
+    <!-- Seção de valores -->
+    <div class="section">
+      <label>Valor Base:
+        <input type="number" id="baseValue" step="0.01" value="0">
+      </label>
+      <label>Valor Piso:
+        <input type="number" id="pisoValue" step="0.01" value="0">
+      </label>
+      <label>Quinquênio Inicial (%):
+        <input type="number" id="quinValue" step="5" value="0">
+      </label>
+    </div>
+    <!-- Seção de opções -->
+    <div class="section checkbox-section">
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="includePrincipal" checked> Incluir Base</label>
+        <label><input type="checkbox" id="includeAle"> Incluir ALE</label>
+        <label><input type="checkbox" id="halfAle"> Usar metade do ALE</label>
+        <label><input type="checkbox" id="includePiso"> Incluir Piso</label>
+        <label><input type="checkbox" id="includeQuinq"> Incluir Quinquênio</label>
+        <label><input type="checkbox" id="includeSexta"> Incluir Sexta Parte</label>
+        <label><input type="checkbox" id="includeRetp"> Incluir RETP</label>
+        <label><input type="checkbox" id="includeFerias" checked> Incluir Férias</label>
+        <label><input type="checkbox" id="includeTerco" checked> Incluir 1/3</label>
+        <label><input type="checkbox" id="includeDecimo" checked> Incluir 13º</label>
+        <label><input type="checkbox" id="includeLic" checked> Incluir Licença</label>
+      </div>
+    <!-- Seleção de base para RETP -->
+    <div class="section">
+      <label>RETP baseado em:
+        <select id="retpBasedOn">
+          <option value="base">Valor Base</option>
+          <option value="ale">ALE</option>
+          <option value="piso">Piso</option>
+        </select>
+      </label>
+    </div>
+    </div>
+    <!-- Seção de taxas -->
+    <div class="section">
+      <label>Taxa Previdência (%):
+        <input type="number" id="taxaPrev" step="0.01" value="11">
+      </label>
+      <label>Taxa Honorários (%):
+        <input type="number" id="taxaHonor" step="0.01" value="0">
+      </label>
+      <label>Taxa Custas (%):
+        <input type="number" id="taxaCustas" step="0.01" value="0">
+      </label>
+    </div>
+    <!-- Seção de botões -->
+    <div class="section button-row">
+      <button id="gerarBtn">Gerar</button>
+      <button id="atualizarBtn">Atualizar</button>
+      <button id="addRowBtn">+ Linha</button>
+      <button id="removeRowBtn">- Linha</button>
+      <button id="downloadBtn">CSV</button>
+      <button id="saveBtn">Salvar HTML</button>
+      <button id="savePrefsBtn">Salvar Prefs</button>
+      <button id="clearPrefsBtn">Limpar Prefs</button>
+      <button onclick="window.print()">Imprimir</button>
+    </div>
+  </div>
+  <div id="reportContainer"></div>
+
+  <!-- Tabelas de dados utilizados: SELIC, Poupança e TJSP -->
+  <div id="dataTables"></div>
+  <!-- Metodologia e fontes -->
+  <div id="methodology" class="no-print"></div>
+  <script type="module" src="config.js"></script>
+  <script type="module" src="columns_config.js"></script>
+  <script type="module" src="calculadora.js"></script>
+  <script type="module" src="ui.js"></script>
+  <script type="module" src="profiles.js"></script>
+</body>
+</html>
